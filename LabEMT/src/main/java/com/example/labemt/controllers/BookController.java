@@ -37,7 +37,7 @@ public class BookController {
                 .map(body->ResponseEntity.ok().body(body))
                 .orElseGet(()->ResponseEntity.badRequest().build());
     }
-    @PostMapping("/edit/{id}")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<Book> save(@PathVariable Long id,@RequestBody BookDTO bookDTO)
     {
         return bookService.edit(id,bookDTO)
@@ -54,7 +54,7 @@ public class BookController {
         }
         return ResponseEntity.badRequest().build();
     }
-    @GetMapping("/markAsTaken/{id}")
+    @PutMapping("/markAsTaken/{id}")
     public ResponseEntity<Book> markAsTaken(@PathVariable Long id)
     {
         return bookService.markAsTaken(id)

@@ -36,7 +36,7 @@ public class AuthorController {
                 .map(body->ResponseEntity.ok().body(body))
                 .orElseGet(()->ResponseEntity.badRequest().build());
     }
-    @PostMapping("/edit/{id}")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<Author> save(@PathVariable Long id, @RequestBody AuthorDTO authorDTO)
     {
         return authorService.edit(id,authorDTO)
