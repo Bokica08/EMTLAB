@@ -2,15 +2,18 @@ package com.example.labemt.controllers;
 
 import com.example.labemt.models.Book;
 import com.example.labemt.models.DTO.BookDTO;
+import com.example.labemt.models.enumerations.Category;
 import com.example.labemt.services.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BookController {
     private final BookService bookService;
 
@@ -21,6 +24,7 @@ public class BookController {
     @GetMapping
     public List<Book> findAll()
     {
+        System.out.println(bookService.findAll());
         return bookService.findAll();
     }
     @GetMapping("/{id}")
@@ -66,5 +70,9 @@ public class BookController {
     {
         return bookService.findAllByPagination(pageable).getContent();
     }
-
+    @GetMapping("/category")
+    public List<Category> getAllCategories()
+    {
+        return Arrays.stream(Category.values()).toList();
+    }
 }

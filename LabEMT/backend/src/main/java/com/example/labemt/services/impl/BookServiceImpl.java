@@ -40,7 +40,7 @@ public class BookServiceImpl implements BookService {
     public Optional<Book> save(BookDTO bookDTO) {
         Author author=authorRepository.findById(bookDTO.getAuthorId())
                 .orElseThrow(()->new AuthorNotFound(bookDTO.getAuthorId()));
-        Book book=new Book(bookDTO.getName(),bookDTO.getGenre(),author,bookDTO.getAvailableCopies());
+        Book book=new Book(bookDTO.getName(),bookDTO.getCategory(),author,bookDTO.getAvailableCopies());
         return Optional.of(bookRepository.save(book));
     }
 
@@ -51,7 +51,7 @@ public class BookServiceImpl implements BookService {
         Author author=authorRepository.findById(bookDTO.getAuthorId())
                 .orElseThrow(()->new AuthorNotFound(bookDTO.getAuthorId()));
         book.setName(bookDTO.getName());
-        book.setGenre(bookDTO.getGenre());
+        book.setCategory(bookDTO.getCategory());
         book.setAuthor(author);
         book.setAvailableCopies(bookDTO.getAvailableCopies());
         return Optional.of(bookRepository.save(book));

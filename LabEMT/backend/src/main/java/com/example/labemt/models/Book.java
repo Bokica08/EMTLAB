@@ -1,6 +1,6 @@
 package com.example.labemt.models;
 
-import com.example.labemt.models.enumerations.Genre;
+import com.example.labemt.models.enumerations.Category;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,10 +18,10 @@ public class Book {
     @ManyToOne
     private Author author;
     @Enumerated(value = EnumType.STRING)
-    private Genre genre;
-    public Book(String name, Genre genre, Author author, Integer availableCopies) {
+    private Category category;
+    public Book(String name, Category category, Author author, Integer availableCopies) {
         this.name = name;
-        this.genre = genre;
+        this.category = category;
         this.author = author;
         this.availableCopies = availableCopies;
     }

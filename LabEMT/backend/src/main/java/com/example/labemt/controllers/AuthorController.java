@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/authors")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthorController {
     private final AuthorService authorService;
 
@@ -18,9 +19,9 @@ public class AuthorController {
 
     }
     @GetMapping
-    public List<Author> findAll()
+    public ResponseEntity<List<Author>> findAll()
     {
-        return authorService.findAll();
+        return ResponseEntity.ok(authorService.findAll());
     }
     @GetMapping("/{id}")
     public ResponseEntity<Author> findById(@PathVariable Long id)

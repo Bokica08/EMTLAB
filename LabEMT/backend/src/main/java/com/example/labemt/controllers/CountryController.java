@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/countries")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CountryController {
     private final CountryService countryService;
 
@@ -17,40 +18,40 @@ public class CountryController {
         this.countryService = countryService;
 
     }
+
     @GetMapping
-    public List<Country> findAll()
-    {
-        return countryService.findAll();
+    public ResponseEntity<List<Country>> findAll() {
+        return ResponseEntity.ok(countryService.findAll());
     }
+
     @GetMapping("/{id}")
-    public ResponseEntity<Country> findById(@PathVariable Long id)
-    {
+    public ResponseEntity<Country> findById(@PathVariable Long id) {
         return countryService.findById(id)
-                .map(body->ResponseEntity.ok().body(body))
-                .orElseGet(()->ResponseEntity.notFound().build());
+                .map(body -> ResponseEntity.ok().body(body))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
     @PostMapping("/add")
-    public ResponseEntity<Country> save(@RequestBody CountryDTO countryDTO)
-    {
+    public ResponseEntity<Country> save(@RequestBody CountryDTO countryDTO) {
         return countryService.save(countryDTO)
-                .map(body->ResponseEntity.ok().body(body))
-                .orElseGet(()->ResponseEntity.badRequest().build());
+                .map(body -> ResponseEntity.ok().body(body))
+                .orElseGet(() -> ResponseEntity.badRequest().build());
     }
+
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Country> save(@PathVariable Long id, @RequestBody CountryDTO countryDTO)
-    {
-        return countryService.edit(id,countryDTO)
-                .map(body->ResponseEntity.ok().body(body))
-                .orElseGet(()->ResponseEntity.badRequest().build());
+    public ResponseEntity<Country> save(@PathVariable Long id, @RequestBody CountryDTO countryDTO) {
+        return countryService.edit(id, countryDTO)
+                .map(body -> ResponseEntity.ok().body(body))
+                .orElseGet(() -> ResponseEntity.badRequest().build());
     }
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Country> delete(@PathVariable Long id)
-    {
+    public ResponseEntity<Country> delete(@PathVariable Long id) {
         countryService.deleteById(id);
-        if(countryService.findById(id).isEmpty())
-        {
+        if (countryService.findById(id).isEmpty()) {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().build();
     }
 }
+
