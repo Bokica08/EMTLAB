@@ -59,17 +59,24 @@ class Books extends React.Component {
 
                 <div className={"row"}>
                     <div className={"col-md-12"}>
-                        <ReactPaginate previousLabel={"back"}
-                                       nextLabel={"next"}
-                                       breakLabel={<a href="/#">...</a>}
-                                       breakClassName={"break-me"}
-                                       pageClassName={"ml-1"}
-                                       pageCount={pages}
-                                       marginPagesDisplayed={2}
-                                       pageRangeDisplayed={5}
-                                       onPageChange={this.handlePageClick}
-                                       containerClassName={"pagination m-4 justify-content-center"}
-                                       activeClassName={"active"}/>
+                        <ReactPaginate  previousLabel={"Previous"}
+                                        nextLabel={"Next"}
+                                        breakLabel={<a href="/#">...</a>}
+                                        pageCount={pages}
+                                        marginPagesDisplayed={2}
+                                        pageRangeDisplayed={5}
+                                        onPageChange={this.handlePageClick}
+                                        className='pagination m-4 justify-content-center'
+                                        breakClassName={'page-item'}
+                                        breakLinkClassName={'page-link'}
+                                        containerClassName={'pagination'}
+                                        pageClassName={'page-item'}
+                                        pageLinkClassName={'page-link'}
+                                        previousClassName={'page-item'}
+                                        previousLinkClassName={'page-link'}
+                                        nextClassName={'page-item'}
+                                        nextLinkClassName={'page-link'}
+                                        activeClassName={'active'}  />
                     </div>
                 </div>
                 <div className={"row"}>

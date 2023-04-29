@@ -9,9 +9,9 @@ const booksTerm = (props)=>{
             <td>{props.term.author.name}</td>
             <td>{props.term.availableCopies}</td>
             <td className={"d-flex justify-content-end"}>
-                <Link to={`/books/edit/${props.term.id}`} className={"btn btn-success"} onClick={()=>props.onEditBook(props.term.id)}>Edit</Link>
-                <button className={"btn btn-danger"} onClick={()=>props.onDeleteBook(props.term.id)}>Delete</button>
-                <button className={"btn btn-warning"} onClick={()=>props.onMarkAsTaken(props.term.id)}>Mark As Taken</button>
+                <Link to={`/books/edit/${props.term.id}`} className={"btn btn-success  m-1"} onClick={()=>props.onEditBook(props.term.id)}>Edit</Link>
+                <button className={"btn btn-danger  m-1"} onClick={()=>props.onDeleteBook(props.term.id)}>Delete</button>
+                <button className={"btn btn-warning  m-1"} onClick={()=>props.onMarkAsTaken(props.term.id)}>Mark As Taken</button>
             </td>
         </tr>
     )
